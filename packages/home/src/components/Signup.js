@@ -1,25 +1,25 @@
-import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import Avatar from '@material-ui/core/Avatar'
+import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Checkbox from '@material-ui/core/Checkbox'
+import Grid from '@material-ui/core/Grid'
+import Box from '@material-ui/core/Box'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
+import { Link } from 'react-router-dom'
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link to="/">Your Website</Link> {new Date().getFullYear()}
-      {'.'}
+      {' '}
+      {'Copyright © '} <Link to="/"> Your Website </Link>{' '}
+      {new Date().getFullYear()} {'.'}{' '}
     </Typography>
-  );
+  )
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -45,20 +45,20 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
-}));
+}))
 
 export default function SignUp({ onSignIn }) {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <Container component="main" maxWidth="xs">
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
-        </Avatar>
+        </Avatar>{' '}
         <Typography component="h1" variant="h5">
-          Sign up
-        </Typography>
+          Sign up{' '}
+        </Typography>{' '}
         <form
           onSubmit={(e) => e.preventDefault()}
           className={classes.form}
@@ -76,7 +76,7 @@ export default function SignUp({ onSignIn }) {
                 label="First Name"
                 autoFocus
               />
-            </Grid>
+            </Grid>{' '}
             <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
@@ -87,7 +87,7 @@ export default function SignUp({ onSignIn }) {
                 name="lastName"
                 autoComplete="lname"
               />
-            </Grid>
+            </Grid>{' '}
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -98,7 +98,7 @@ export default function SignUp({ onSignIn }) {
                 name="email"
                 autoComplete="email"
               />
-            </Grid>
+            </Grid>{' '}
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -110,14 +110,14 @@ export default function SignUp({ onSignIn }) {
                 id="password"
                 autoComplete="current-password"
               />
-            </Grid>
+            </Grid>{' '}
             <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
                 label="I want to receive inspiration, marketing promotions and updates via email."
               />
-            </Grid>
-          </Grid>
+            </Grid>{' '}
+          </Grid>{' '}
           <Button
             type="submit"
             fullWidth
@@ -126,18 +126,18 @@ export default function SignUp({ onSignIn }) {
             className={classes.submit}
             onClick={onSignIn}
           >
-            Sign Up
-          </Button>
+            Sign Up{' '}
+          </Button>{' '}
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link to="/auth/signin">Already have an account? Sign in</Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
+              <Link to="/home/signin"> Already have an account ? Sign in </Link>{' '}
+            </Grid>{' '}
+          </Grid>{' '}
+        </form>{' '}
+      </div>{' '}
       <Box mt={5}>
         <Copyright />
-      </Box>
+      </Box>{' '}
     </Container>
-  );
+  )
 }

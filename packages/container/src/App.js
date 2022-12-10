@@ -1,28 +1,27 @@
-import React, { lazy, Suspense, useState, useEffect } from "react";
-import { Router, Route, Switch, Redirect } from "react-router-dom";
-import { StylesProvider, createGenerateClassName } from "@material-ui/core";
-import { createBrowserHistory } from "history";
-import Header from "./components/Header";
-import Progress from "./components/Progress";
+import React, { lazy, Suspense, useState, useEffect } from 'react'
+import { Router, Route, Switch, Redirect } from 'react-router-dom'
+import { StylesProvider, createGenerateClassName } from '@material-ui/core'
+import { createBrowserHistory } from 'history'
+import Header from './components/Header'
+import Progress from './components/Progress'
 
-const MarketingLazy = lazy(() => import("./components/MarketingApp"));
-const AuthLazy = lazy(() => import("./components/AuthApp"));
-//const DashboardLazy = lazy(() => import("./components/DashboardApp"));
+const MarketingLazy = lazy(() => import('./components/MarketingApp'))
+const HomeLazy = lazy(() => import('./components/HomeApp'))
 
 const generateClassName = createGenerateClassName({
-  productionPrefix: "co",
-});
+  productionPrefix: 'co',
+})
 
-const history = createBrowserHistory();
+const history = createBrowserHistory()
 
 export default () => {
-  const [isSignedIn, setIsSignIn] = useState(false);
+  const [isSignedIn, setIsSignIn] = useState(false)
 
   useEffect(() => {
     if (isSignedIn) {
-      history.push("/dashboard");
+      history.push('/dashboard')
     }
-  }, [isSignedIn]);
+  }, [isSignedIn])
 
   return (
     <Router history={history}>
@@ -34,18 +33,11 @@ export default () => {
           />
           <Suspense fallback={<Progress />}>
             <Switch>
-              <Route path="/auth">
-                <AuthLazy onSignIn={() => setIsSignIn(true)} />
-              </Route>
-              {/* <Route path="/dashboard">
-                {!isSignedIn && <Redirect to="/" />}
-                <DashboardLazy />
-              </Route> */}
-              <Route path="/" component={MarketingLazy} />
+              <Route path="/" component={HomeLazy} />
             </Switch>
           </Suspense>
         </div>
       </StylesProvider>
     </Router>
-  );
-};
+  )
+}

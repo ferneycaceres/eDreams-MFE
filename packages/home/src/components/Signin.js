@@ -1,28 +1,28 @@
-import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import Avatar from '@material-ui/core/Avatar'
+import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Checkbox from '@material-ui/core/Checkbox'
+import Grid from '@material-ui/core/Grid'
+import Box from '@material-ui/core/Box'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
+import { Link } from 'react-router-dom'
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
+      {' '}
+      {'Copyright © '}{' '}
       <Link color="inherit" to="/">
-        Your Website
+        Your Website{' '}
       </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
+      {new Date().getFullYear()} {'.'}{' '}
     </Typography>
-  );
+  )
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -48,20 +48,20 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
-}));
+}))
 
 export default function SignIn({ onSignIn }) {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <Container component="main" maxWidth="xs">
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
-        </Avatar>
+        </Avatar>{' '}
         <Typography component="h1" variant="h5">
           Sign in
-        </Typography>
+        </Typography>{' '}
         <form
           onSubmit={(e) => e.preventDefault()}
           className={classes.form}
@@ -101,18 +101,21 @@ export default function SignIn({ onSignIn }) {
             className={classes.submit}
             onClick={onSignIn}
           >
-            Sign In
-          </Button>
+            Sign In{' '}
+          </Button>{' '}
           <Grid container>
             <Grid item>
-              <Link to="/auth/signup">{"Don't have an account? Sign Up"}</Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
+              <Link to="/home/signup">
+                {' '}
+                {"Don't have an account? Sign Up"}{' '}
+              </Link>{' '}
+            </Grid>{' '}
+          </Grid>{' '}
+        </form>{' '}
+      </div>{' '}
       <Box mt={8}>
         <Copyright />
-      </Box>
+      </Box>{' '}
     </Container>
-  );
+  )
 }
