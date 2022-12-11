@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from "react";
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -54,15 +54,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Header({ isSignedIn, onSignOut }) {
+export default function Header() {
 
   const classes = useStyles();
 
-  const onClick = () => {
+  /*const onClick = () => {
     if (isSignedIn && onSignOut) {
       onSignOut();
     }
-  };
+  };*/
 
   return (
     <React.Fragment>
@@ -82,7 +82,7 @@ export default function Header({ isSignedIn, onSignOut }) {
           >
             App
           </Typography>
-          <Button
+          {/* <Button
             color="primary"
             variant="outlined"
             className={classes.link}
@@ -91,7 +91,7 @@ export default function Header({ isSignedIn, onSignOut }) {
             onClick={onClick}
           >
             {isSignedIn ? 'Logout' : 'Login'}
-          </Button>
+          </Button> */}
         </Toolbar>
       </AppBar>
     </React.Fragment>
