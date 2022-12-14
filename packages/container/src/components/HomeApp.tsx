@@ -1,5 +1,3 @@
-//import { mount } from 'home/HomeApp'
-
 const { mount } = require('home/HomeApp')
 
 import React, { useRef, useEffect } from 'react'

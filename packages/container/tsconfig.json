@@ -11,5 +11,6 @@
     "allowSyntheticDefaultImports": true,
     "isolatedModules": false,
     "lib": ["es6", "dom"]
-  }
+  },
+  "include": ["src/**/*", "src/custom.ds.ts"]
 }
