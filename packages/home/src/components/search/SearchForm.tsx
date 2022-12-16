@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import Radio, { RadioProps } from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
@@ -7,7 +7,9 @@ import FormControl from '@material-ui/core/FormControl'
 import AutoComplete from '../common/AutoComplete'
 import DepartureDate from '../common/DateField'
 import Button from '@material-ui/core/Button'
-import { Link as RouterLink } from 'react-router-dom'
+import axios from 'axios'
+
+import { ArrivalLocations, DepartureLocations } from '../search/LocationFields'
 
 const useStyles = makeStyles((theme: Theme) => ({
   searchType: {
@@ -40,10 +42,30 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 export default function SearchForm() {
   const classes = useStyles()
-  const [searchType, setSearchType] = React.useState('1')
+  const [searchType, setSearchType] = useState('1')
+
+  const [locations, setLocations] = useState<string[]>([])
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchType((event.target as HTMLInputElement).value)
   }
+
+  const retrieveIntineraries = async () => {
+    await axios
+      .get('http://localhost:3000/locations')
+      .then((res) => {
+        const locations = res.data
+        setLocations(locations)
+      })
+      .catch((err) => {
+        console.log('err')
+      })
+  }
+
+  useEffect(() => {
+    retrieveIntineraries()
+  }, [])
+
   return (
     <div>
       <FormControl component="fieldset">
@@ -81,10 +103,17 @@ export default function SearchForm() {
         </RadioGroup>
         <div className={classes.inputFieldsContainer}>
           <div className={classes.inputField}>
-            <AutoComplete />
+            {locations && (
+              <DepartureLocations
+                locations={locations}
+                onChange={(value: any) => {
+                  console.log(value)
+                }}
+              />
+            )}
           </div>
           <div className={classes.inputField}>
-            <AutoComplete />
+            {locations && <ArrivalLocations locations={locations} />}
           </div>
           <div className={classes.inputField}>
             <DepartureDate />

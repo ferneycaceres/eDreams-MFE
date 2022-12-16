@@ -1,6 +1,7 @@
 {
     "name": "home",
     "version": "1.0.0",
+    "proxy": "http://localhost:3000/",
     "scripts": {
         "start": "webpack server --config config/webpack.dev.js",
         "build": "webpack --config config/webpack.prod.js"
@@ -10,6 +11,7 @@
         "@material-ui/icons": "^4.9.1",
         "@material-ui/lab": "^4.0.0-alpha.61",
         "@material-ui/pickers": "^3.3.10",
+        "axios": "^1.2.1",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
         "react-router-dom": "^5.2.0",
