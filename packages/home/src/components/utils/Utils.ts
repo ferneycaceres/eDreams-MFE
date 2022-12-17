@@ -1,7 +1,7 @@
 export const buildAutoCompleteObject = (array: string[]) => {
   return array.map((item) => {
     return {
-      title: item,
+      option: item,
       value: item,
     }
   })

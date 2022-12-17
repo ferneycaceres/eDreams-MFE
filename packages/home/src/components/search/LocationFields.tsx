@@ -1,20 +1,23 @@
 import * as React from 'react'
-import AutoComplete, { IAutoComplete } from '../common/AutoComplete'
+import AutoComplete, {
+  IAutoComplete,
+  IAutoCompleteOption,
+} from '../common/AutoComplete'
 import { buildAutoCompleteObject } from '../utils/Utils'
 
 interface LocationFieldsProps {
   locations: string[]
-  onChange?(value: any): any
+  onChangeLocation?(value: IAutoCompleteOption): any
+  error?: boolean
+  errorMessage?: string
 }
 
 const DepartureLocations: React.FC<LocationFieldsProps> = (
   props: LocationFieldsProps
 ) => {
-  const { locations, onChange } = props
+  const { locations, onChangeLocation, error, errorMessage } = props
   const parseAutocomplete = buildAutoCompleteObject(locations)
-  const onchangeDep = (value: any) => {
-    onChange(value)
-  }
+
   const autoCompleteProps: IAutoComplete = {
     id: 'departure-autocomplete-field',
     label: 'Departure Locations',
@@ -22,7 +25,11 @@ const DepartureLocations: React.FC<LocationFieldsProps> = (
     styles: {
       width: '250px',
     },
-    onChange: onchangeDep,
+    onChange: (value: IAutoCompleteOption) => {
+      onChangeLocation(value)
+    },
+    error: error,
+    errorMessage: errorMessage,
   }
   return <div>{<AutoComplete {...autoCompleteProps} />}</div>
 }
@@ -30,7 +37,8 @@ const DepartureLocations: React.FC<LocationFieldsProps> = (
 const ArrivalLocations: React.FC<LocationFieldsProps> = (
   props: LocationFieldsProps
 ) => {
-  const parseAutocomplete = buildAutoCompleteObject(props.locations)
+  const { locations, onChangeLocation, error, errorMessage } = props
+  const parseAutocomplete = buildAutoCompleteObject(locations)
   const autoCompleteProps: IAutoComplete = {
     id: 'arrival-autocomplete-field',
     label: 'Arrival Locations',
@@ -38,6 +46,11 @@ const ArrivalLocations: React.FC<LocationFieldsProps> = (
     styles: {
       width: '250px',
     },
+    onChange: (value: IAutoCompleteOption) => {
+      onChangeLocation(value)
+    },
+    error: error,
+    errorMessage: errorMessage,
   }
   return <div>{<AutoComplete {...autoCompleteProps} />}</div>
 }
