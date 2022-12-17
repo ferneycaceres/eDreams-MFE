@@ -9,7 +9,7 @@ import Progress from './components/Progress'
 import { ThemeProvider } from '@material-ui/core/styles'
 import theme from './theme'
 
-//const MarketingLazy = lazy(() => import('./components/MarketingApp'))
+const ResultsLazy = lazy(() => import('./components/ResultsApp'))
 const HomeLazy = lazy(() => import('./components/HomeApp'))
 
 const generateClassName = createGenerateClassName({
@@ -28,6 +28,9 @@ export default () => {
             <Header />
             <Suspense fallback={<Progress />}>
               <Switch>
+                <Route path="/results">
+                  <ResultsLazy />
+                </Route>
                 <Route path="/" component={HomeLazy} />
               </Switch>
             </Suspense>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import Radio, { RadioProps } from '@material-ui/core/Radio'
+import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import FormControl from '@material-ui/core/FormControl'
@@ -8,8 +8,8 @@ import { IAutoCompleteOption } from '../common/AutoComplete'
 import DepartureDate from '../common/DateField'
 import Button from '@material-ui/core/Button'
 import axios from 'axios'
-
 import { ArrivalLocations, DepartureLocations } from '../search/LocationFields'
+import useLocalStorage from '../../hooks/useLocalStorage'
 
 const useStyles = makeStyles((theme: Theme) => ({
   searchType: {
@@ -58,6 +58,7 @@ export default function SearchForm() {
   const [departureDate, setDepartureDate] = useState<string>(defaultDate)
   const [errors, setErrors] = useState<ISearchFormError>(null)
   const resetErrors = () => setErrors(null)
+  const [storedSearch, setStoredSearch] = useLocalStorage('searchParams', '')
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchType((event.target as HTMLInputElement).value)
@@ -96,13 +97,14 @@ export default function SearchForm() {
       'validation: ',
       validateForm(departureValue, arrivalValue, departureDateValue)
     )
-  }
-  const disabledSearch = (): boolean => {
-    const arrivalValue = arrivalSelected.value
-    const departureValue = departureSelected.value
-    const departureDateValue = departureDate
-
-    return false
+    if (validateForm) {
+      window.location.href = '/results'
+      setStoredSearch({
+        departure: departureValue,
+        arrival: arrivalValue,
+        date: departureDateValue,
+      })
+    }
   }
 
   const validateForm = (
@@ -148,6 +150,7 @@ export default function SearchForm() {
 
   useEffect(() => {
     retrieveIntineraries()
+    setStoredSearch(null)
   }, [])
 
   return (

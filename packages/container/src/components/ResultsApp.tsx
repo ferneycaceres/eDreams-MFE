@@ -1,4 +1,4 @@
-import { mount } from 'marketing/Marketing'
+const { mount } = require('results/ResultsApp')
 
 import React, { useRef, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
@@ -9,7 +9,7 @@ export default () => {
 
   useEffect(() => {
     const { onParentNavigate } = mount(ref.current, {
-      onNavigate: ({ pathname: nextPathname }) => {
+      onNavigate: ({ pathname: nextPathname }: any) => {
         const { pathname } = history.location
 
         if (pathname !== nextPathname) {
