@@ -1,4 +1,4 @@
-# eDreams React Assestment
+# eDreams React Assessment
 
 The app is built using the microfrontend approach , so we should execute the following commands:
 
